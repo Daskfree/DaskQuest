@@ -30,13 +30,20 @@ body {
 .logo-icon { font-size: 28px; animation: float 3s ease-in-out infinite; display: inline-block; }
 @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
 .logo-accent { color: #7c6aff; font-weight: 900; }
-.header-right { display: flex; align-items: center; gap: 12px; }
+.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .score-display {
   font-size: 16px; font-weight: bold; color: #ffd93d;
   padding: 6px 14px; border-radius: 20px;
   background: rgba(255, 217, 61, 0.15);
   border: 1px solid rgba(255, 217, 61, 0.4);
 }
+.learn-btn {
+  font-size: 14px; font-weight: bold; color: #fff;
+  padding: 8px 16px; border-radius: 20px;
+  background: linear-gradient(135deg, #7c6aff, #5d4fd6);
+  border: none; cursor: pointer; transition: all 0.25s;
+}
+.learn-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,106,255,0.5); }
 .author-signature {
   font-size: 15px; color: #aaa; padding: 6px 14px;
   border: 1px solid rgba(124, 106, 255, 0.5); border-radius: 20px;
@@ -203,38 +210,16 @@ body {
   font-size: 18px; border: 1px solid rgba(124,106,255,0.6);
 }
 
-/* ВЗЛОМЩИК (код) */
-.code-panel {
-  background: rgba(124, 106, 255, 0.1);
-  border: 2px solid rgba(124, 106, 255, 0.4);
-  border-radius: 20px; padding: 25px;
-  margin-bottom: 20px; width: 100%; max-width: 500px;
-}
-.code-title { font-size: 18px; font-weight: bold; color: #7c6aff; margin-bottom: 15px; }
-.code-row {
-  display: flex; justify-content: center; gap: 10px; margin: 15px 0;
-}
-.code-digit-box {
-  width: 60px; height: 70px; border-radius: 12px;
-  background: rgba(255,255,255,0.1);
-  border: 2px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 32px; font-weight: bold; transition: all 0.3s;
-}
-.code-digit-box.green { background: rgba(46,204,113,0.4); border-color: #2ecc71; }
-.code-digit-box.yellow { background: rgba(255,217,61,0.4); border-color: #ffd93d; }
-.code-digit-box.gray { background: rgba(100,100,100,0.3); border-color: #666; }
-
+/* ВЗЛОМЩИК */
 .code-input {
-  display: flex; justify-content: center; gap: 10px; margin: 15px 0;
+  display: flex; justify-content: center; gap: 10px; margin: 20px 0;
 }
 .code-input-box {
   width: 60px; height: 70px; border-radius: 12px;
   background: rgba(255,255,255,0.1);
   border: 2px solid rgba(124,106,255,0.6);
   color: #fff; font-size: 32px; font-weight: bold;
-  text-align: center;
-  transition: all 0.3s;
+  text-align: center; transition: all 0.3s;
 }
 .code-input-box:focus { outline: none; border-color: #7c6aff; background: rgba(124,106,255,0.2); }
 
@@ -256,14 +241,58 @@ body {
 .attempt-digit.yellow { background: rgba(255,217,61,0.5); border: 2px solid #ffd93d; }
 .attempt-digit.gray { background: rgba(100,100,100,0.4); border: 2px solid #666; }
 
-.legend {
-  font-size: 13px; color: #aaa; margin-bottom: 15px;
-}
+.legend { font-size: 13px; color: #aaa; margin-bottom: 15px; }
 .legend span { margin: 0 8px; }
 .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
 .dot-green { background: #2ecc71; }
 .dot-yellow { background: #ffd93d; }
 .dot-gray { background: #666; }
+
+/* ОБУЧЕНИЕ */
+.learn-screen {
+  max-width: 700px; margin: 0 auto; width: 100%;
+}
+.learn-title {
+  font-size: 32px; margin-bottom: 10px;
+  background: linear-gradient(135deg, #7c6aff, #ff6ac1);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.learn-subtitle { color: #aaa; margin-bottom: 25px; font-size: 15px; }
+
+.fact-card {
+  background: rgba(124, 106, 255, 0.1);
+  border: 2px solid rgba(124, 106, 255, 0.4);
+  border-radius: 15px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: left;
+}
+.fact-card:hover {
+  background: rgba(124, 106, 255, 0.2);
+  border-color: #7c6aff;
+  transform: translateX(5px);
+}
+.fact-head {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 16px; font-weight: bold;
+}
+.fact-emoji { font-size: 24px; }
+.fact-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  display: none;
+}
+.fact-card.open .fact-body { display: block; animation: fadeIn 0.3s ease; }
+.fact-card.open { background: rgba(124, 106, 255, 0.25); }
+.fact-arrow { margin-left: auto; transition: transform 0.3s; }
+.fact-card.open .fact-arrow { transform: rotate(180deg); }
 
 .site-footer {
   text-align: center; padding: 15px; font-size: 13px; color: #666;
@@ -279,13 +308,13 @@ body {
   .logo { font-size: 18px; }
   .author-signature { font-size: 12px; padding: 4px 10px; }
   .score-display { font-size: 13px; padding: 4px 10px; }
+  .learn-btn { font-size: 12px; padding: 6px 12px; }
   .map-grid { grid-template-columns: 1fr; }
   .level-icon { font-size: 36px; }
   .robot-face { font-size: 60px; }
   .slot { min-width: 100px; padding: 12px 8px; }
   .cell { width: 45px; height: 45px; font-size: 20px; }
   .code-input-box { width: 48px; height: 58px; font-size: 24px; }
-  .code-digit-box { width: 48px; height: 58px; font-size: 24px; }
   .attempt-digit { width: 36px; height: 36px; font-size: 18px; }
 }
 </style>
@@ -299,6 +328,7 @@ body {
   </div>
   <div class="header-right">
     <div class="score-display" id="header-score">⭐ 0</div>
+    <button class="learn-btn" onclick="openLearn()">📘 Обучение</button>
     <div class="author-signature">by <b>Dask</b></div>
   </div>
 </header>
@@ -398,7 +428,7 @@ body {
   </div>
 </main>
 
-<!-- ЭКРАН 5: ВЗЛОМЩИК (УГАДАЙ КОД) -->
+<!-- ЭКРАН 5: ВЗЛОМЩИК -->
 <main class="screen" id="screen-hacker">
   <div class="game-header">
     <h2>🕵️ Взломщик: угадай код</h2>
@@ -431,6 +461,18 @@ body {
   <div class="attempts-list" id="hacker-attempts"></div>
 </main>
 
+<!-- ЭКРАН 6: ОБУЧЕНИЕ -->
+<main class="screen" id="screen-learn">
+  <div class="learn-screen">
+    <h1 class="learn-title">📘 Обучение</h1>
+    <p class="learn-subtitle">Короткие факты об IT — простыми словами. Нажми на карточку, чтобы раскрыть.</p>
+
+    <div id="facts-list"></div>
+
+    <button class="btn btn-back" onclick="backToStart()">← На главную</button>
+  </div>
+</main>
+
 <footer class="site-footer">
   <span class="signature">DaskQuest</span> · © 2026 — Егорова Дарья
 </footer>
@@ -445,10 +487,67 @@ const game = {
   completedLevels: [],
 };
 
+const facts = [
+  { emoji: '🧠', title: 'Что такое процессор?',
+    text: 'Процессор — это «мозг» компьютера. Он выполняет все команды: считает, сравнивает, решает. Чем быстрее процессор, тем быстрее работает компьютер. У современных процессоров миллиарды транзисторов внутри!' },
+  { emoji: '💾', title: 'Что такое оперативная память?',
+    text: 'Оперативная память (RAM) — это «черновик» компьютера. В ней хранятся данные, с которыми он работает прямо сейчас. Когда ты выключаешь компьютер, оперативная память очищается. Поэтому файлы сохраняют на диск!' },
+  { emoji: '💽', title: 'Чем отличается HDD от SSD?',
+    text: 'HDD — старый жёсткий диск с вращающимися пластинами. SSD — современный, без движущихся частей. SSD работает в 5–10 раз быстрее и не боится тряски. Поэтому новые ноутбуки обычно на SSD.' },
+  { emoji: '🖥️', title: 'Что такое операционная система?',
+    text: 'Операционная система (Windows, macOS, Linux, Android, iOS) — это «начальник» компьютера. Она управляет всеми программами, файлами и устройствами. Без неё компьютер не знал бы, что делать.' },
+  { emoji: '🧭', title: 'Что такое алгоритм?',
+    text: 'Алгоритм — это чёткая последовательность шагов для решения задачи. Например, рецепт бутерброда — это алгоритм. В программировании алгоритмы помогают компьютеру решать задачи шаг за шагом.' },
+  { emoji: '🔁', title: 'Что такое цикл?',
+    text: 'Цикл — это повторение одних и тех же действий. Например, «повтори 10 раз: шаг вперёд». Вместо того чтобы писать 10 одинаковых команд, программист пишет одну с циклом. Это экономит время и код.' },
+  { emoji: '❓', title: 'Что такое условие «если»?',
+    text: 'Условие — это проверка: «если идёт дождь, возьми зонт». В программировании так же: «если счёт больше 10, скажи победа». Компьютер проверяет условие и выбирает, что делать дальше.' },
+  { emoji: '🐛', title: 'Что такое баг?',
+    text: 'Баг — это ошибка в программе. Название появилось в 1947 году, когда в компьютер попал настоящий мотылёк (bug — «жук» по-английски). Программисты ищут баги и исправляют их — это называется «отладка».' },
+  { emoji: '🔐', title: 'Что такое надёжный пароль?',
+    text: 'Надёжный пароль — длинный (12+ символов), с буквами разного регистра, цифрами и знаками. Не используй дату рождения или «123456». И не повторяй один пароль на разных сайтах!' },
+  { emoji: '🎣', title: 'Что такое фишинг?',
+    text: 'Фишинг — это обман, когда мошенники притворяются знакомыми или компаниями и выманивают пароли и деньги. Например, письмо «Ваш аккаунт заблокирован, перейдите по ссылке». Настоящие компании так не делают!' },
+  { emoji: '🔥', title: 'Что такое файрвол?',
+    text: 'Файрвол (firewall) — это «стена» между твоим компьютером и интернетом. Он проверяет все данные и блокирует подозрительные. Как охранник на входе в школу: пропускает своих, останавливает чужих.' },
+  { emoji: '🛡️', title: 'Что такое антивирус?',
+    text: 'Антивирус — это программа, которая ищет и удаляет вирусы. Вирусы — вредоносные программы, которые могут украсть данные или сломать компьютер. Антивирус регулярно обновляется, чтобы ловить новые угрозы.' },
+  { emoji: '💾', title: 'Что такое бэкап?',
+    text: 'Бэкап — это резервная копия. Если файлы потеряются (вирус, поломка, случайное удаление), их можно восстановить из бэкапа. Важные данные всегда стоит копировать на флешку или в облако.' },
+  { emoji: '🌐', title: 'Что такое интернет?',
+    text: 'Интернет — это огромная сеть из миллионов компьютеров по всему миру, соединённых кабелями и спутниками. Когда ты открываешь сайт, твой компьютер отправляет запрос через много узлов и получает ответ за доли секунды!' },
+];
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
+}
+
+function openLearn() {
+  renderFacts();
+  showScreen('screen-learn');
+}
+
+function renderFacts() {
+  const list = document.getElementById('facts-list');
+  if (list.dataset.rendered) return;
+  list.innerHTML = facts.map((f, i) =>
+    `<div class="fact-card" onclick="toggleFact(${i})">
+      <div class="fact-head">
+        <span class="fact-emoji">${f.emoji}</span>
+        <span>${f.title}</span>
+        <span class="fact-arrow">▼</span>
+      </div>
+      <div class="fact-body">${f.text}</div>
+    </div>`
+  ).join('');
+  list.dataset.rendered = '1';
+}
+
+function toggleFact(i) {
+  const cards = document.querySelectorAll('.fact-card');
+  cards[i].classList.toggle('open');
 }
 
 function startGame(diff) {
@@ -816,15 +915,10 @@ function setCourierMessage(text, type) {
   el.className = 'game-message ' + (type || '');
 }
 
-// ===== ИГРА 3: ВЗЛОМЩИК (угадай код) =====
-let hacker = {
-  secret: [],
-  attempts: [],
-  maxAttempts: 8,
-};
+// ===== ИГРА 3: ВЗЛОМЩИК =====
+let hacker = { secret: [], attempts: [], maxAttempts: 8 };
 
 function startHackerGame() {
-  // Загадываем 4 цифры, могут повторяться
   hacker.secret = [];
   for (let i = 0; i < 4; i++) {
     hacker.secret.push(Math.floor(Math.random() * 10));
@@ -845,16 +939,12 @@ function startHackerGame() {
   document.getElementById('hacker-message').className = 'game-message';
 
   const inputs = document.querySelectorAll('.code-input-box');
-  inputs.forEach(inp => {
-    inp.value = '';
-    inp.disabled = false;
-  });
+  inputs.forEach(inp => { inp.value = ''; inp.disabled = false; });
   inputs[0].focus();
 
   showScreen('screen-hacker');
 }
 
-// Автопереход между полями ввода + только цифры
 document.addEventListener('input', e => {
   if (!e.target.classList.contains('code-input-box')) return;
   e.target.value = e.target.value.replace(/\D/g, '');
@@ -864,7 +954,6 @@ document.addEventListener('input', e => {
   }
 });
 
-// Enter — проверить
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && document.getElementById('screen-hacker').classList.contains('active')) {
     checkHackerCode();
@@ -882,12 +971,10 @@ function checkHackerCode() {
     guess.push(parseInt(inp.value));
   }
 
-  // Считаем результат: зелёный / жёлтый / серый
   const result = [];
   const secretCopy = [...hacker.secret];
   const guessCopy = [...guess];
 
-  // Первый проход — зелёные
   for (let i = 0; i < 4; i++) {
     if (guessCopy[i] === secretCopy[i]) {
       result[i] = 'green';
@@ -898,7 +985,6 @@ function checkHackerCode() {
     }
   }
 
-  // Второй проход — жёлтые
   for (let i = 0; i < 4; i++) {
     if (guessCopy[i] === null) continue;
     const idx = secretCopy.indexOf(guessCopy[i]);
@@ -912,9 +998,7 @@ function checkHackerCode() {
 
   hacker.attempts.push({ guess: [...guess], result: [...result] });
 
-  // Проверка на победу
   const won = result.every(r => r === 'green');
-
   renderHackerAttempts();
 
   if (won) {
@@ -927,7 +1011,6 @@ function checkHackerCode() {
     return;
   }
 
-  // Проверка на проигрыш
   if (hacker.attempts.length >= hacker.maxAttempts) {
     setHackerMessage(`💥 Попытки кончились! Код был: ${hacker.secret.join('')}`, 'err');
     document.querySelectorAll('.code-input-box').forEach(inp => inp.disabled = true);
@@ -935,16 +1018,11 @@ function checkHackerCode() {
     return;
   }
 
-  // Продолжаем
   document.getElementById('hacker-progress').textContent =
     `Попытка ${hacker.attempts.length + 1} из ${hacker.maxAttempts}`;
 
   setHackerMessage('Попробуй ещё! Смотри цвета подсказок.', 'info');
-
-  // Очищаем поля
-  document.querySelectorAll('.code-input-box').forEach(inp => {
-    inp.value = '';
-  });
+  document.querySelectorAll('.code-input-box').forEach(inp => inp.value = '');
   document.querySelector('.code-input-box[data-i="0"]').focus();
 }
 
